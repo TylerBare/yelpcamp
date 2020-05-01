@@ -1,0 +1,100 @@
+body {
+	font-family: "krub", serif;
+}
+
+.thumbnail img {
+	width: 100%;
+}
+
+.thumbnail {
+	padding: 0;
+}
+
+.thumbnail .caption-full {
+	padding: 9px;
+}
+
+.delete-form {
+	display: inline;
+}
+
+/* Google Maps */
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+#userBio {
+	width: 100%;
+}
+
+#profImg {
+	border-radius: 50%;
+	height: 300px;
+	width: 300px;
+	position: relative;
+	right: 75px;
+}
+
+.userForm {
+	padding-top: 25px;
+}
+
+.userForm {
+	padding-top: 25px;
+}
+
+.userHeader {
+	padding-bottom: 25px;
+}
+
+.campList {
+	padding-left: 50px;
+}
+
+.userCampInfo {
+	padding-bottom: 0;
+}
+
+.userInfo {
+	margin-bottom: 0;
+}
+
+@media screen and (max-width: 985px) { 
+	.screenCorrect {
+		text-align: center;
+	}
+	.screenCorrectImg {
+		margin: 0 40%;
+	}
+	.userHeader {
+		position: relative;
+		top: 30px;
+		padding-bottom: 50px;
+	}
+}
+
+@media screen and (max-width: 625px) { 
+	.screenCorrectImg {
+		margin: 0 32%;
+	}
+}
+
+#bioTextArea {
+	word-wrap: break-word;
+	max-width: 375px;
+	min-width: 250px;
+	min-height: 125px;
+}
+
+#follow {
+	padding-top: 25px;
+	margin: 0 10%;
+}
+
+#following {
+	padding-top: 25px;
+	margin: 0 8%;
+}
+
+

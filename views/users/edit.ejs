@@ -1,0 +1,54 @@
+<%- include("../partials/header") %>
+
+
+<div class="row">
+	<div class="col-md-4 screenCorrect">
+		<h1>
+			<%= user.firstName + " " + user.lastName %>
+		</h1>
+		<div class="screenCorrectImg">
+			<img id="profImg" src="<%=user.avatar%>" alt="user profile image">
+		</div>
+		<div>
+			<form action="/users/<%=user._id%>?_method=PUT" method="POST">
+				<p class="userForm"><strong>E-mail:</strong></p>
+				<input type="text" name="email" value="<%= user.email %>">
+				
+				<p class="userForm"><strong>Bio:</strong></p>
+				<textarea id="bioTextArea" type="text" name="bio"><%= user.bio %></textarea>
+				
+				<p class="userForm"><strong>Favorite Campground:</strong></p>
+				<input type="text" name="favCamp" value="<%= user.favCamp %>">
+				
+				<p class="userForm"><strong>Profile Picture:</strong></p>
+				<input type="text" name="image" value="<%= user.avatar %>">
+				<div class="userForm">
+					<button class="btn btn-xs btn-primary">Submit!</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-md-8 campList">
+		<h3 class="userHeader">
+			<%= user.username %>'s campgrounds:
+		</h3>
+		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+		<% campgrounds.forEach(function(campground){ %>
+			<div class="col-md-3 col-sm-6">
+			  <div class="thumbnail">
+				  <img src="<%= campground.image  %>">
+				  <div class="caption">
+					  <h4><%= campground.name %></h4>
+				  </div>
+				  <p class="userInfo">
+					  <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary btn-block">More Info</a>
+				  </p>
+			  </div>
+		  	</div>
+		<% }) %>
+		</div>
+	</div>
+</div>
+
+	
+<%- include("../partials/footer") %>

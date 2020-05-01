@@ -1,0 +1,73 @@
+<%- include("../partials/header") %>
+
+<div class="row">
+	<div class="col-md-4 screenCorrect">
+		<h1><%= user.firstName + " " + user.lastName %></h1>
+		<div class="screenCorrectImg">
+			<img id="profImg" src="<%=user.avatar%>" alt="user profile image">
+		</div>
+		<div>
+			<p style="padding-top: 20px; margin: 0 9%;" class="screenCorrect">
+				<em><%= user.followers.length%> followers</em>
+			</p>
+			<% if(currentUser && !(currentUser._id.toString() == user._id.toString())) { %>
+				<% if(!user.followers.includes(currentUser._id)){ %>
+					<p id="follow">
+						<a href="/follow/<%=user._id%>" class="btn btn-primary">Follow</a>
+					</p>
+				<% } else { %>
+					<p id="following">
+						<a href="/follow/<%=user._id%>/remove" class="btn btn-success">Following</a>
+					</p>
+				<% } %>
+			<% } %>
+			<p class="userForm"><strong>E-mail:</strong></p>
+			<p><a href="mailto:<%= user.email %>"><%= user.email %></a></p>
+			<% if(user.bio){ %>
+				<p class="userForm"><strong>Bio:</strong></p>
+				<p style="word-wrap: break-word;"><%= user.bio %></p>
+			<% } else { %>
+				<p class="userForm "><strong>Bio:</strong></p>
+				<p></p>
+			<% } %>
+			<% if(user.favCamp){ %>
+				<p class="userForm"><strong>Favorite Campground:</strong></p>
+				<p>
+					<%= user.favCamp %>
+				</p>
+			<% } else { %>
+				<p class="userForm"><strong>Favorite Campground:</strong></p>
+				<p>
+					
+				</p>
+			<% } %>
+			<% if(currentUser && user._id.equals(currentUser._id)){ %>
+			<div class="userForm">
+				<a class="btn btn-xs btn-warning" href="/users/<%=user._id%>/edit">Edit profile</a>
+			</div>
+			<% } %>
+		</div>
+	</div>
+	<div class="col-md-8 campList">
+		<h3 class="userHeader">
+			<%= user.username %>'s campgrounds:
+		</h3>
+		<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+		<% campgrounds.forEach(function(campground){ %>
+			<div class="col-md-3 col-sm-6">
+			  <div class="thumbnail">
+				  <img style="height: 120px;" src="<%= campground.image  %>">
+				  <div class="caption">
+					  <h4><%= campground.name %></h4>
+				  </div>
+				  <p class="userInfo">
+					  <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary btn-block">More Info</a>
+				  </p>
+			  </div>
+		  	</div>
+		<% }) %>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>
