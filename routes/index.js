@@ -26,7 +26,13 @@ router.post("/register", function(req, res){
 	}
 	User.register(newUser, req.body.password, function(err, user){
 		if(err){
-			return res.render("register", {"error": err.message});
+			var errMsg = "";
+			if(err.message == 'E11000 duplicate key error collection: test.users index: email_1 dup key: { email: "tylerbare@gmail.com" }') {
+				errMsg = "Email already in use";
+			} else {
+				errMsg = err.message;
+			}
+			return res.render("register", {"error": errMsg});
 		}
 		passport.authenticate("local")(req, res, function(){
 			req.flash("success", "Welcome to YelpCamp " + user.username);
